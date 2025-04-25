@@ -33,40 +33,10 @@ Python 기반으로 다양한 AI 툴과 라이브러리를 통합하여 실험 �
 git clone https://github.com/your-username/perceptive.git
 cd perceptive
 
-
-## 가상환경 생성 및 패키지 설치
-
+2. 가상환경 생성 및 패키지 설치
+```bash
 python -m venv venv
 source venv/bin/activate   # Windows는 venv\Scripts\activate
 pip install -r requirements.txt
 
 python app.py
-
-
-## MNIST 예제
-
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras.utils import to_categorical
-
-# 데이터 불러오기
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
-
-# 데이터 전처리
-x_train = x_train / 255.0
-x_test = x_test / 255.0
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
-
-# 모델 구성
-model = Sequential([
-    Flatten(input_shape=(28, 28)),
-    Dense(128, activation='relu'),
-    Dense(10, activation='softmax')
-])
-
-# 모델 컴파일 및 학습
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=5, validation_data=(x_test, y_test))
-
